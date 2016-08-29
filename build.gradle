@@ -1,0 +1,40 @@
+description = 'Apache Spark Introduction'
+
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    scalaVersion = '2.11'
+    sparkVersion = '1.6.0'
+}
+
+group 'spark-hazelcast-connector'
+version "1.0.0-s_$scalaVersion"
+
+//repositories {
+//    mavenCentral()
+//}
+
+dependencies {
+    compile "org.scala-lang:scala-library:$scalaVersion"
+
+    compile "org.apache.spark:spark-core_$scalaVersion:$sparkVersion"
+    compile "org.apache.spark:spark-sql_$scalaVersion:$sparkVersion"
+    compile "org.apache.spark:spark-streaming_$scalaVersion:$sparkVersion"
+    compile 'org.apache.commons:commons-lang3:3.4'
+
+    testCompile "org.scalatest:scalatest_$scalaVersion:3.0.0-M15"
+    testCompile 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0' //version required
+}
